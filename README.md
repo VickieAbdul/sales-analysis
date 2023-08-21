@@ -16,7 +16,6 @@ Category Distribution Among Gender: A stacked bar plot was created to demonstrat
 
 # Shiny Dashboard Implementation for Sales Analysis
 
-Introduction:
 Shiny Dashboard was implemented to address the business problem of analyzing sales data for a retail company. The Shiny Dashboard allows for interactive exploration and visualization of the sales dataset. It provides insights into monthly sales trends, product distribution, customer demographics, and more.
 
 #### Dashboard Components:
