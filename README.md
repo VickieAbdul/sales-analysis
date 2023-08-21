@@ -1,5 +1,5 @@
 # Business Problem: Analyzing Sales Data for a Retail Company
-#### ShinyDasboard:
+#### Dashboard:
 https://victoriaabdul.shinyapps.io/productsalesdashboard/
 
 #### Introduction:
