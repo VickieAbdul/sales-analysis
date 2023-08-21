@@ -1,0 +1,123 @@
+# Creating the dataset
+
+start_date <- as.Date('2022-01-01')  
+end_date <- as.Date('2022-12-31')
+
+set.seed(123)
+num_rows <- 500
+customer_ids <- seq(1, num_rows)
+name <- randomNames::randomNames(num_rows)
+age <- sample(18:65, num_rows, replace = TRUE)
+gender <- sample(c("Male", "Female"), num_rows, replace = TRUE)
+dates <- as.Date(sample( as.numeric(start_date): as.numeric(end_date), num_rows, replace = TRUE))
+products <- sample(c("Laptop", "Shirt", "Book", "Phone", "Pants"), num_rows, replace = TRUE)
+categories <- sample(c("Electronics", "Clothing", "Books"), num_rows, replace = TRUE)
+prices <- sample(seq(10, 200, by = 10), num_rows, replace = TRUE)
+quantities <- sample(1:5, num_rows, replace = TRUE)
+
+data <- data.frame(
+  CustomerID = customer_ids,
+  Name = name,
+  Age = age,
+  Gender = gender,
+  Date = dates,
+  Product = products,
+  Category = categories,
+  Price = prices,
+  Quantity = quantities
+)
+
+# Because of the random generation, some of the products did not match the categories
+# Defining the mapping of products to categories
+product_category_mapping <- c(
+  "Laptop" = "Electronics",
+  "Phone" = "Electronics",
+  "Shirt" = "Clothing",
+  "Pants" = "Clothing",
+  "Book" = "Books"
+)
+
+# Updating the 'categories' column based on the mapping
+data$Category <- product_category_mapping[data$Product]
+
+
+# Data Wrangling
+
+# Explore the dataset
+head(data)
+summary(data)
+str(data)
+
+# Check for missing values
+sum(is.na(data))
+
+# Check for outliers (using boxplot as an example)
+boxplot(data$Price, main="Boxplot of Price")
+
+# Creating additional columns
+data <- data %>%
+  mutate(Total_Sales = Price * Quantity, Month = month(Date))
+
+# Double checking to ensure month is correct and replacing all values with their corresponding month abbreviation
+if(all(data$Month %in% 1:12)) {
+    data$Month <- month.abb[data$Month]
+} else {
+  print("Invalid month values in the Month column.")
+}
+
+# Data Analysis
+
+# Calculate key metrics for the entire year
+total_sales <- sum(data$Price * data$Quantity)
+total_customers <- n_distinct(data$CustomerID)
+total_products <- n_distinct(data$Product)
+total_categories <- n_distinct(data$Category)
+
+# Print the calculated metrics
+cat("Total Sales Amount:", total_sales, "\n")
+cat("Total Customers:", total_customers, "\n")
+cat("Total Products:", total_products, "\n")
+cat("Total Categories:", total_categories, "\n")
+
+
+# Data Visualization
+
+# Create a line plot of monthly sales trend
+monthly_sales <- data %>%
+  group_by(Month) %>%
+  summarise(TotalSales = sum(Price * Quantity)) %>% 
+  arrange(desc(Month))
+
+ggplot(monthly_sales, aes(x = factor(Month, levels = month.abb), y = TotalSales, group = 1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+labs(title = "Monthly Sales Trend", x = "", y = "Total Sales")
+
+ # Create a bar plot of product distribution across categories
+product_category_dist <- data %>%
+  group_by(Category, Product) %>%
+  tally()
+ggplot(product_category_dist, aes(x = Category, y = n, fill = Product)) +
+geom_bar(stat = "identity") +
+labs(title = "Product Distribution Across Categories", x = "Category", y = "Count") +
+theme(legend.position = "right")
+
+# Create a pie chart of gender distribution
+gender_distribution <- data %>%
+  group_by(Gender) %>%
+  tally()
+ggplot(gender_distribution, aes(x = "", y = n, fill = Gender)) +
+geom_bar(stat = "identity", width = 1) +
+coord_polar(theta = "y") +
+labs(title = "Gender Distribution of Customers") +
+theme_void() +
+theme(legend.position = "bottom")
+
+# Create a stacked bar plot showing the popular categories among the gender
+gender_cat <- data %>% 
+  group_by(Gender, Category) %>% 
+  summarise(totalsales = sum(Total_Sales))
+ggplot(gender_cat, aes(x = Gender, y = totalsales)) +
+  geom_bar(aes(fill = Category), stat = "identity", position = "dodge") +
+  labs(title = "Category Distribution Among Gender", x = "") 
+  
