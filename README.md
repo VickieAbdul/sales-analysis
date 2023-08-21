@@ -10,13 +10,17 @@ Key metrics for the entire year were calculated. These metrics include total sal
 #### Data Visualization:
 Data visualization techniques were employed to present insights visually.
 
-Monthly Sales Trend: A line plot was created to illustrate the trend in monthly sales. The data was grouped by month, and the total sales for each month were calculated. The resulting line plot shows the fluctuation in sales over the course of the year.
+##### Monthly Sales Trend: 
+A line plot was created to illustrate the trend in monthly sales. The data was grouped by month, and the total sales for each month were calculated. The resulting line plot shows the fluctuation in sales over the course of the year.
 
-Product Distribution Across Categories: A bar plot was generated to display the distribution of products across different categories. The data was grouped by category and product, and the count of products in each category was tallied. The bar plot showcases the variety of products in each category.
+##### Product Distribution Across Categories: 
+A bar plot was generated to display the distribution of products across different categories. The data was grouped by category and product, and the count of products in each category was tallied. The bar plot showcases the variety of products in each category.
 
-Gender Distribution: A pie chart was used to visualize the gender distribution of customers. The data was grouped by gender, and the count of customers for each gender was tallied. The pie chart provides an easy-to-understand representation of the gender distribution.
+##### Gender Distribution: 
+A pie chart was used to visualize the gender distribution of customers. The data was grouped by gender, and the count of customers for each gender was tallied. The pie chart provides an easy-to-understand representation of the gender distribution.
 
-Category Distribution Among Gender: A stacked bar plot was created to demonstrate the popularity of different product categories among genders. The data was grouped by gender and category, and the total sales in each category for each gender were summarized. The stacked bar plot highlights the preference for specific categories among different genders.
+##### Category Distribution Among Gender: 
+A stacked bar plot was created to demonstrate the popularity of different product categories among genders. The data was grouped by gender and category, and the total sales in each category for each gender were summarized. The stacked bar plot highlights the preference for specific categories among different genders.
 
 # Shiny Dashboard Implementation for Sales Analysis
 
