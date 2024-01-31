@@ -3,7 +3,7 @@
 https://victoriaabdul.shinyapps.io/productsalesdashboard/
 
 #### Introduction:
-This project aims to address a business problem faced by a retail company that deals with various products across different categories. The company's dataset contains information about customer demographics, product details, sales transactions, and more. The objective is to gain insights into the company's sales performance, customer base, and product popularity. The analysis will be performed using R programming and relevant data visualization techniques.
+This project addressed a problem faced by a retail company that deals with various products across different categories. They needed to have a web-based interactive dashboard for their stakeholders so that they could monitor monthly sales on-the-go. The company's dataset contains information about customer demographics, product details, sales transactions, and more. The objective is to gain insights into the company's sales performance, customer base, and product popularity. The analysis will be performed using R programming and relevant data visualization techniques.
 #### Dataset Creation:
 A dataset was generated using R, representing sales data for the year 2022. It includes information such as customer IDs, names, ages, genders, purchase dates, product names, categories, prices, and quantities. The dataset consists of 500 rows, and random generation was used for creating various attributes. However, there were some inconsistencies in product-category mappings, which were addressed by updating the 'Category' column using a predefined mapping.
 #### Data Wrangling:
